@@ -1,4 +1,7 @@
 name: Claude Assistant
+
+env:
+  ANTHROPIC_BASE_URL: https://api.openlux.ai
 on:
   issue_comment: # Pull Request is just an issue with code it github's terms.
     types: [created]
@@ -31,7 +34,7 @@ jobs:
           use_commit_signing: true
           track_progress: true # ✨ Enables tracking comments
           claude_args: |
-            --model opus \
+            --model claude-sonnet-4-6 \
             --allowedTools "mcp__github_inline_comment__create_inline_comment,Bash(gh pr comment:*),Bash(gh pr diff:*),Bash(gh pr view:*)"
           prompt: |
             REPO: ${{ github.repository }}
@@ -89,7 +92,7 @@ jobs:
           use_commit_signing: true
           track_progress: true # ✨ Enables tracking comments
           claude_args: |
-            --model opus \
+            --model claude-sonnet-4-6 \
             --allowedTools "mcp__github_inline_comment__create_inline_comment,Bash(gh pr comment:*),Bash(gh pr diff:*),Bash(gh pr view:*)"
           prompt: |
             REPO: ${{ github.repository }}
@@ -152,7 +155,7 @@ jobs:
           anthropic_api_key: ${{ secrets.ANTHROPIC_API_KEY }}
           use_commit_signing: true
           claude_args: |
-            --model opus \
+            --model claude-sonnet-4-6 \
             --allowedTools "mcp__github_inline_comment__create_inline_comment,Bash(gh pr comment:*),Bash(gh pr diff:*),Bash(gh pr view:*),Bash(gh pr create:*),Bash(git checkout:*),Bash(git add:*),Bash(git commit:*),Bash(git push:*),Bash(git branch:*),Edit,Write,MultiEdit"
           prompt: |
             Security policies:
